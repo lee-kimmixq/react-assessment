@@ -47,30 +47,23 @@ export const Spotify = {
   savePlaylist: async function (playlistName, trackUris) {
     if (!playlistName) return;
     if (!trackUris) return;
+    const headers = {
+      headers: { Authorization: `Bearer ${USER_ACCESS_TOKEN}` },
+    };
     const {
       data: { id: userId },
-    } = await axios.get(`https://api.spotify.com/v1/me`, {
-      headers: { Authorization: `Bearer ${USER_ACCESS_TOKEN}` },
-    });
+    } = await axios.get(`https://api.spotify.com/v1/me`, headers);
     const {
       data: { id: playlistId },
     } = await axios.post(
       `https://api.spotify.com/v1/users/${userId}/playlists`,
-      {
-        name: playlistName,
-      },
-      {
-        headers: { Authorization: `Bearer ${USER_ACCESS_TOKEN}` },
-      }
+      { name: playlistName },
+      headers
     );
     await axios.post(
       `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
-      {
-        uris: trackUris,
-      },
-      {
-        headers: { Authorization: `Bearer ${USER_ACCESS_TOKEN}` },
-      }
+      { uris: trackUris },
+      headers
     );
     return;
   },
