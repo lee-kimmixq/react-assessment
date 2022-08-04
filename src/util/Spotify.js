@@ -3,7 +3,7 @@ import axios from "axios";
 let USER_ACCESS_TOKEN = "";
 
 const CLIENT_ID = process.env.CLIENT_ID;
-const REDIRECT_URI = "http://localhost:3000/";
+const REDIRECT_URI = process.env.URL;
 
 export const Spotify = {
   getAccessToken: function () {
