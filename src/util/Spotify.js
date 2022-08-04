@@ -2,8 +2,8 @@ import axios from "axios";
 
 let USER_ACCESS_TOKEN = "";
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const REDIRECT_URI = process.env.REDIRECT_URL;
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL;
 
 export const Spotify = {
   getAccessToken: function () {
